@@ -25,52 +25,35 @@ function getPassword2() {
 }
 
 function getPassword() {
-	let lastOOM = 0;
 	let dial = 50;
-	let lastDial = 50;
 	let count = 0;
-	let lastCount = 0;
-	let oomChanged = false;
-	let zerod = false;
 	for (const num of data) {
+		const lastDial = dial;
 		dial += num;
-		const newOOM = Math.floor(dial / 100);
-		if (newOOM != lastOOM) {
-			const change = Math.abs(newOOM - lastOOM);
-			count += change;
-			oomChanged = true;
-			if (lastDial % 100 === 0 && dial % 100 !== 0) {
-				console.log("Adjusting for crossing zero");
+
+		// Calculate how many multiples of 100 we cross
+		const min = Math.min(lastDial, dial);
+		const max = Math.max(lastDial, dial);
+
+		// Find first multiple of 100 at or after min
+		const firstMultiple = Math.ceil(min / 100) * 100;
+		// Find last multiple of 100 at or before max
+		const lastMultiple = Math.floor(max / 100) * 100;
+
+		// Count multiples in range, excluding the starting position
+		if (firstMultiple <= lastMultiple) {
+			const crossings = (lastMultiple - firstMultiple) / 100 + 1;
+			count += crossings;
+			// Don't count if we started exactly on a multiple
+			if (lastDial % 100 === 0) {
 				count--;
 			}
-		} else if (dial % 100 === 0) {
-			count++;
-			zerod = true;
 		}
-		if (lastCount !== count || true) {
-			console.log(
-				`${dial} = ${lastDial} + (${num})`,
-				count,
-				"newOOM:",
-				newOOM,
-				"lastOOM:",
-				lastOOM,
-				"oomChanged:",
-				oomChanged,
-				"zerod:",
-				zerod,
-			);
-		}
-		lastOOM = newOOM;
-		oomChanged = false;
-		zerod = false;
-		lastDial = dial;
-		lastCount = count;
 	}
 	console.log("Password: ", count);
 }
 
 export function day01() {
-	// getPassword();
+	getPassword();
 	getPassword2();
 }
