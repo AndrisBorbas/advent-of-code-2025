@@ -21,7 +21,7 @@ function findAllInvalidInRange(start: number, end: number) {
 				// console.log(str, repeat, check, sCheck);
 				if (repeat === check && repeat + sCheck === str) {
 					invalids.push(i);
-					console.log("Invalid ID found: ", i);
+					// console.log("Invalid ID found: ", i);
 					break;
 				}
 			}
