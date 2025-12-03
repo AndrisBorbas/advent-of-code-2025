@@ -1,0 +1,25 @@
+{
+	"name": "advent-of-code-2025",
+	"version": "0.0.1",
+	"private": true,
+	"module": "src/index.ts",
+	"type": "module",
+	"scripts": {
+		"dev": "bun --hot src/index.ts",
+		"start": "bun src/index.ts",
+		"typecheck": "tsc --noEmit",
+		"test:coverage": "bun test --coverage",
+		"lint": "eslint src --ext .ts,.tsx",
+		"lint:fix": "bun lint --fix"
+	},
+	"devDependencies": {
+		"eslint": "^9.39.1",
+		"eslint-config-prettier": "^10.1.8",
+		"globals": "^16.5.0",
+		"prettier": "^3.7.4",
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.48.1",
+		"@types/bun": "latest"
+	},
+	"packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b"
+}
