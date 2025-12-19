@@ -1,7 +1,7 @@
 import input from "./input.txt";
 import example from "./example.txt";
 
-const data = input.trim().split("\n");
+const data = example.trim().split("\n");
 
 const freshRanges: Array<{ start: number; end: number }> = [];
 const ingredients: Array<number> = [];
@@ -41,7 +41,17 @@ function part1() {
 	console.log("Fresh Ingredients: ", count);
 }
 
+function part2() {
+	let count = 0;
+	for (const range of freshRanges) {
+		let locCount = range.end - range.start + 1;
+		count += locCount;
+	}
+	console.log("Total Fresh Locations: ", count);
+}
+
 export function day05() {
 	processData();
-	part1();
+	// part1();
+	part2();
 }
